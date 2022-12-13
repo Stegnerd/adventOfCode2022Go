@@ -42,12 +42,15 @@ func main() {
 func findMatchDayPuzzle(day, puzzle int) {
 	switch day {
 	case 1:
-		switch puzzle {
-		case 1:
-			day1.Day1Puzzle1()
-		case 2:
-			day1.Day1Puzzle2()
-		}
+		switchPuzzles(puzzle, day1.Puzzle1, day1.Puzzle2)
+	}
+}
 
+func switchPuzzles(choice int, puzzle1 func(), puzzle2 func()) {
+	switch choice {
+	case 1:
+		puzzle1()
+	case 2:
+		puzzle2()
 	}
 }
