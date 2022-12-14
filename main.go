@@ -2,6 +2,7 @@ package main
 
 import (
 	"adventOfCode2022/day1"
+	"adventOfCode2022/day2"
 	"bufio"
 	"fmt"
 	"os"
@@ -43,6 +44,8 @@ func findMatchDayPuzzle(day, puzzle int) {
 	switch day {
 	case 1:
 		switchPuzzles(puzzle, day1.Puzzle1, day1.Puzzle2)
+	case 2:
+		switchPuzzles(puzzle, day2.Puzzle1, day2.Puzzle2)
 	}
 }
 
