@@ -3,8 +3,10 @@ package main
 import (
 	"adventOfCode2022/day1"
 	"adventOfCode2022/day2"
+	"adventOfCode2022/day3"
 	"bufio"
 	"fmt"
+	"log"
 	"os"
 	"strconv"
 	"strings"
@@ -46,6 +48,10 @@ func findMatchDayPuzzle(day, puzzle int) {
 		switchPuzzles(puzzle, day1.Puzzle1, day1.Puzzle2)
 	case 2:
 		switchPuzzles(puzzle, day2.Puzzle1, day2.Puzzle2)
+	case 3:
+		switchPuzzles(puzzle, day3.Puzzle1, day3.Puzzle2)
+	default:
+		log.Fatalf("Doesn't match any day: %d, puzzle: %d", day, puzzle)
 	}
 }
 
