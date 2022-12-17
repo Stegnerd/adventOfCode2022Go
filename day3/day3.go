@@ -1,10 +1,9 @@
 package day3
 
 import (
+	"adventOfCode2022/util"
 	"bufio"
 	"fmt"
-	"log"
-	"os"
 )
 
 var (
@@ -65,16 +64,7 @@ var (
 )
 
 func Puzzle1() {
-	file, err := os.Open("data/day3puzzle1data.txt")
-	if err != nil {
-		log.Fatal(err)
-	}
-	defer func(file *os.File) {
-		err := file.Close()
-		if err != nil {
-			panic(err)
-		}
-	}(file)
+	file := util.ReadFile("day3puzzle1data.txt")
 
 	result := 0
 	scanner := bufio.NewScanner(file)
@@ -118,16 +108,7 @@ func charCheck(firstHalf, secondHalf string, count int) int {
 }
 
 func Puzzle2() {
-	file, err := os.Open("data/day3puzzle1data.txt")
-	if err != nil {
-		log.Fatal(err)
-	}
-	defer func(file *os.File) {
-		err := file.Close()
-		if err != nil {
-			panic(err)
-		}
-	}(file)
+	file := util.ReadFile("day3puzzle1data.txt")
 
 	index := 0
 	groupCount := 1

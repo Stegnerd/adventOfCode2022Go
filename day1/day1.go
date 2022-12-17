@@ -1,25 +1,16 @@
 package day1
 
 import (
+	"adventOfCode2022/util"
 	"bufio"
 	"fmt"
 	"log"
-	"os"
 	"sort"
 	"strconv"
 )
 
 func Puzzle1() {
-	file, err := os.Open("data/day1puzzle1data.txt")
-	if err != nil {
-		log.Fatal(err)
-	}
-	defer func(file *os.File) {
-		err := file.Close()
-		if err != nil {
-			panic(err)
-		}
-	}(file)
+	file := util.ReadFile("day1puzzle1data.txt")
 
 	highScore := 0
 	currentScore := 0
@@ -48,16 +39,7 @@ func Puzzle1() {
 }
 
 func Puzzle2() {
-	file, err := os.Open("data/day1puzzle1data.txt")
-	if err != nil {
-		log.Fatal(err)
-	}
-	defer func(file *os.File) {
-		err := file.Close()
-		if err != nil {
-			panic(err)
-		}
-	}(file)
+	file := util.ReadFile("day1puzzle1data.txt")
 
 	scoreList := []int{}
 	currentScore := 0

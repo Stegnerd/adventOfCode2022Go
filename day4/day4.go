@@ -1,6 +1,7 @@
 package day4
 
 import (
+	"adventOfCode2022/util"
 	"bufio"
 	"fmt"
 	"log"
@@ -10,16 +11,7 @@ import (
 )
 
 func Puzzle1() {
-	file, err := os.Open("data/day4puzzle1data.txt")
-	if err != nil {
-		log.Fatal(err)
-	}
-	defer func(file *os.File) {
-		err := file.Close()
-		if err != nil {
-			panic(err)
-		}
-	}(file)
+	file := util.ReadFile("day4puzzle1data.txt")
 
 	count := 0
 	scanner := bufio.NewScanner(file)
@@ -55,4 +47,30 @@ func containCheck(range1, range2 []string) bool {
 	return false
 }
 
-func Puzzle2() {}
+func Puzzle2() {
+	file, err := os.Open("data/day4puzzle1data.txt")
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer func(file *os.File) {
+		err := file.Close()
+		if err != nil {
+			panic(err)
+		}
+	}(file)
+
+	count := 0
+	scanner := bufio.NewScanner(file)
+	for scanner.Scan() {
+		row := scanner.Text()
+		ranges := strings.Split(row, ",")
+
+		range1 := strings.Split(ranges[0], "-")
+		range2 := strings.Split(ranges[1], "-")
+
+		if containCheck(range1, range2) {
+			count += 1
+		}
+	}
+
+}

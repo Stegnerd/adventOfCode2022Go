@@ -1,10 +1,9 @@
 package day2
 
 import (
+	"adventOfCode2022/util"
 	"bufio"
 	"fmt"
-	"log"
-	"os"
 	"strings"
 )
 
@@ -37,16 +36,7 @@ var (
 )
 
 func Puzzle1() {
-	file, err := os.Open("data/day2puzzle1data.txt")
-	if err != nil {
-		log.Fatal(err)
-	}
-	defer func(file *os.File) {
-		err := file.Close()
-		if err != nil {
-			panic(err)
-		}
-	}(file)
+	file := util.ReadFile("day2puzzle1data.txt")
 
 	result := 0
 	scanner := bufio.NewScanner(file)
@@ -96,16 +86,7 @@ func matchResult(opponent, me int) int {
 }
 
 func Puzzle2() {
-	file, err := os.Open("data/day2puzzle1data.txt")
-	if err != nil {
-		log.Fatal(err)
-	}
-	defer func(file *os.File) {
-		err := file.Close()
-		if err != nil {
-			panic(err)
-		}
-	}(file)
+	file := util.ReadFile("day2puzzle1data.txt")
 
 	result := 0
 	scanner := bufio.NewScanner(file)
@@ -119,7 +100,6 @@ func Puzzle2() {
 		result += matchResult2(opponentGuess, expectedResult)
 	}
 
-	// not 11088
 	fmt.Printf("\n puzzle2 result: %d  \n", result)
 }
 
