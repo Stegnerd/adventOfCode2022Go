@@ -118,5 +118,80 @@ func charCheck(firstHalf, secondHalf string, count int) int {
 }
 
 func Puzzle2() {
+	file, err := os.Open("data/day3puzzle1data.txt")
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer func(file *os.File) {
+		err := file.Close()
+		if err != nil {
+			panic(err)
+		}
+	}(file)
 
+	index := 0
+	groupCount := 1
+	group := []string{}
+	groupMap := map[int][]string{}
+	scanner := bufio.NewScanner(file)
+
+	for scanner.Scan() {
+		row := scanner.Text()
+		group = append(group, row)
+
+		if groupCount%3 == 0 {
+			groupMap[index] = group
+			group = []string{}
+			groupCount = 1
+			index += 1
+		} else {
+			groupCount += 1
+		}
+	}
+
+	score := groupCheck(groupMap)
+
+	fmt.Printf("\n result:= %d \n", score)
+}
+
+func groupCheck(groupMap map[int][]string) int {
+	result := 0
+
+	for _, group := range groupMap {
+		oneMap := getCharMap(group[0])
+		twoMap := getCharMap(group[1])
+		threeMap := getCharMap(group[2])
+
+		result += badgeCompare(oneMap, twoMap, threeMap)
+	}
+
+	return result
+}
+
+func getCharMap(group string) map[string]int {
+	charMap := map[string]int{}
+
+	for i := 0; i < len(group); i++ {
+		oneChar := string(group[i])
+
+		charMap[oneChar] += 1
+	}
+
+	return charMap
+}
+
+func badgeCompare(oneMap, twoMap, threeMap map[string]int) int {
+	result := 0
+	for k, v := range oneMap {
+
+		oneValue := v
+		secondVal := twoMap[k]
+		thirdVal := threeMap[k]
+
+		if oneValue > 0 && secondVal > 0 && thirdVal > 0 {
+			result = charValue[k]
+		}
+	}
+
+	return result
 }
